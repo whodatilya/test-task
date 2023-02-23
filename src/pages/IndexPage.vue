@@ -3,15 +3,10 @@
     <div class="first-section__wrapper" style="height: 30vh">
       <div>
         <div>
-          <input placeholder="Заголовок"/>
+          123
         </div>
         <div>
-          <input placeholder="Описание"/>
-        </div>
-        <div>
-          <button>
-            Создать
-          </button>
+          123
         </div>
       </div>
     </div>
@@ -24,7 +19,7 @@
       <div class="card__search">
         <label>
           Введите название фильма:
-          <input class="m-right_10" type="text" v-model="filterText" placeholder="Example: Plane">
+          <input class="m-right_10 input__borders" type="text" v-model="filterText" placeholder="Пример: Plane">
           <button class="m-right_10" @click="searchMovie">
             Найти
           </button>
@@ -33,18 +28,9 @@
           </button>
         </label>
       </div>
-      <div v-if="isSearched" class="card__wrapper">
+      <div class="card__wrapper">
         <div
-            v-for="finded in findedMovie"
-            :key="finded.title"
-            class="card__padding"
-        >
-          <card-item :item="finded"/>
-        </div>
-      </div>
-      <div v-else class="card__wrapper">
-        <div
-            v-for="movie in items"
+            v-for="movie in !isSearched ? items : findedMovie"
             :key="movie.title"
             class="card__padding"
         >
@@ -97,6 +83,13 @@ export default {
 </script>
 
 <style scoped lang="sass">
+.input__borders
+  width: 60%
+  height: 20px
+  border-radius: 30px
+  padding: 10px
+  border: none
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.10)
 .card
   &__padding
     padding: 8px

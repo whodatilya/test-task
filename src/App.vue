@@ -6,5 +6,5 @@
 
 <style lang="sass">
 body
-  background: #E6FFFF
+  background: #fafafa
 </style>

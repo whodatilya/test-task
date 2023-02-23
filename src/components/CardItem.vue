@@ -1,13 +1,10 @@
 <template>
   <div class="card__inner">
+    <div class="card__text" style="text-align: center">
+      {{ item.title }}
+    </div>
     <div class="card__text">
       <img :src="movieImage(item.image)" alt="" style="width: 100%; border-radius: 4px"/>
-    </div>
-    <div class="card__text-position">
-              <span class="card__text">
-                Название:
-              </span>
-      {{ item.title }}
     </div>
     <div class="card__text-position">
               <span class="card__text">
@@ -57,11 +54,11 @@ export default {
 .card
   &__inner
     min-width: 320px
-    background: #B3E5FC
+    background: rgba(255, 255, 255, 0.61)
     width: fit-content
     padding: 12px
     border-radius: 10px
-    box-shadow: 2px 2px 2px 2px rgb(179, 198, 208)
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.10)
   &__text-position
     display: flex
     justify-content: space-between
