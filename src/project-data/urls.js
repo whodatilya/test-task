@@ -1,0 +1,1 @@
+export const URL_FETCH_MOVIES = 'https://api.themoviedb.org/3/movie/popular'
