@@ -1,12 +1,14 @@
 
 export function mapMovies (data) {
     const movie = []
-    for (let item of data.results) {
+    const results = data.results.slice(0, 5)
+    for (let result of results) {
         movie.push({
-            title: item.title,
-            rating: item.vote_average,
-            date: item.release_date,
-            language: item.original_language
+            title: result.title,
+            rating: result.vote_average,
+            date: result.release_date,
+            language: result.original_language,
+            image: result.backdrop_path
         })
     }
     return movie
