@@ -1,52 +1,79 @@
 <template>
   <div>
-    <div v-if="!items" >
-      Loader
+    <div class="first-section__wrapper" style="height: 30vh">
+      <div>
+        <div>
+          <input placeholder="Заголовок"/>
+        </div>
+        <div>
+          <input placeholder="Описание"/>
+        </div>
+        <div>
+          <button>
+            Создать
+          </button>
+        </div>
+      </div>
     </div>
-    <div v-else class="card__wrapper">
-      <div v-for="movie in items"
-           :key="movie.title"
-           style="padding: 8px"
-      >
-        <div class="card__inner">
-          <div class="card__text">
-            Название: {{ movie.title }}
-          </div>
-          <div class="card__text">
-            Дата выхода: {{ formatDate(movie.date) }}
-          </div>
-          <div class="card__text">
-            Рейтинг: {{ movie.rating }}
-          </div>
-          <div class="card__text">
-            Оригинальный язык: {{ movie.language }}
-          </div>
-          <div class="card__text">
-            <img :src="movieImage(movie.image)" alt="" style="width: 100%"/>
-          </div>
+    <div class="second-section__wrapper"  style="height: 30vh">
+      <div>
+        2
+      </div>
+    </div>
+    <div class="cards__wrapper">
+      <div>
+        <label>
+          Введите название фильма:
+          <input type="text" v-model="filterText" placeholder="Example: Plane" style="margin-right: 10px">
+          <button @click="searchMovie">Найти</button>
+        </label>
+      </div>
+      <div v-if="isSearched" class="card__wrapper">
+        <div
+            v-for="finded in findedMovie"
+            :key="finded.title"
+            class="card__padding"
+        >
+          <card-item :item="finded"/>
+        </div>
+      </div>
+      <div v-else class="card__wrapper">
+        <div
+            v-for="movie in items"
+            :key="movie.title"
+            class="card__padding"
+        >
+          <card-item :item="movie"/>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import {nextTick} from "vue";
-import { URL_FETCH_IMAGE } from "@/project-data/urls";
-import moment from 'moment'
+import { nextTick } from 'vue';
+import CardItem from '@/components/CardItem';
 
 export default {
   name: 'IndexPage',
+  components: { CardItem },
   data () {
     return {
-      items: []
+      items: [],
+      filterText: '',
+      isSearched: false,
+      findedMovie: []
     }
   },
   methods: {
-    movieImage: function (url) {
-      return URL_FETCH_IMAGE + url
-    },
-    formatDate: function (date) {
-      return moment(date).format('D.MM.YYYY')
+    searchMovie: function () {
+      const finded = []
+      this.items.forEach(item => {
+        if (item.title.toLowerCase().indexOf(this.filterText) !== -1) {
+          this.isSearched = true
+          finded.push(item)
+        }
+      })
+      this.findedMovie = finded
     }
   },
   async mounted () {
@@ -60,21 +87,11 @@ export default {
 
 <style scoped lang="sass">
 .card
+  &__padding
+    padding: 8px
   &__wrapper
     padding: 8px
     display: flex
     flex-wrap: wrap
     justify-content: space-between
-  &__inner
-    min-width: 320px
-    background: #B3E5FC
-    width: fit-content
-    padding: 12px
-    border-radius: 10px
-  &__text
-    font-family: Graphik Kinopoisk LC Web,Tahoma,Arial,Verdana,sans-serif
-    font-size: 13px
-    line-height: 18px
-    font-weight: 600
-    padding: 3px 0
 </style>
