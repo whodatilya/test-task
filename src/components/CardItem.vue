@@ -1,5 +1,8 @@
 <template>
   <div class="card__inner">
+    <div class="card__text">
+      <img :src="movieImage(item.image)" alt="" style="width: 100%; border-radius: 4px"/>
+    </div>
     <div class="card__text-position">
               <span class="card__text">
                 Название:
@@ -23,9 +26,6 @@
                 Оригинальный язык:
               </span>
       {{ item.language }}
-    </div>
-    <div class="card__text">
-      <img :src="movieImage(item.image)" alt="" style="width: 100%"/>
     </div>
   </div>
 </template>
