@@ -9,7 +9,7 @@
         </div>
         <div @click="$emit('chooseFile')">
           <input type="file" style="display: none" :id="'uploadFile_' + movie.id" @change="$emit('addImage')">
-          <img style="max-width: 60px; max-height: 60px" :src="movie.image !== '' ? movie.image : iconMovie" alt="">
+          <img style="max-width: 100%" :src="movie.image !== '' ? movie.image : iconMovie" alt="">
         </div>
       </div>
       <div v-if="movie.isEdit">
