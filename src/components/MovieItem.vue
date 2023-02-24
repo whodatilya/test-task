@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="inner">
       <div class="relative">
-        <div class="top-right">
+        <div class="top-right" v-if="isPageEdit">
           <img v-if="movie.isEdit" class="cursor-pointer save" :src="iconSave" alt="" @click="$emit('saveMovie')">
           <img v-else class="cursor-pointer edit" :src="iconEdit" alt="" @click="$emit('editMovie')">
           <img class="cursor-pointer delete" :src="iconDelete" alt="" @click="$emit('deleteMovie')">
@@ -54,7 +54,7 @@ export default {
       type: Object,
       default: null
     },
-    isEdit: {
+    isPageEdit: {
       type: Boolean,
       default: false
     }

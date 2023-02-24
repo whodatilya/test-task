@@ -1,5 +1,14 @@
 <template>
   <div class="padding_8">
+    <div class="view-type__wrapper">
+      <span class="view-type__text">
+        {{ isEditPage ? 'Режим редактирования' : 'Режим просмотра' }}
+      </span>
+      <label class="switch">
+        <input type="checkbox" v-model="isEditPage">
+        <span class="slider round"></span>
+      </label>
+    </div>
     <div class="padding_8 card-items__wrapper margin-bottom__30">
       <div class="card-items__inner">
         <div>
@@ -15,21 +24,22 @@
     </div>
     <div>
       <div class="padding_8">
-        <div class="padding_10 cards-list__wrapper">
+        <div class="padding_10 cards-list__wrapper" v-if="movieList">
           <div
               v-for="movie in movieList"
               :key="movie.id"
               class="cards-list__inners">
             <movie-item
-              :parent-movie="movie"
-              @saveMovie="saveMovie(movie)"
-              @editMovie="editMovie(movie)"
-              @deleteMovie="deleteMovie(movie)"
-              @addImage="addImage(movie)"
-              @chooseFile="chooseFile(movie)"
+                :is-page-edit="isEditPage"
+                :parent-movie="movie"
+                @saveMovie="saveMovie(movie)"
+                @editMovie="editMovie(movie)"
+                @deleteMovie="deleteMovie(movie)"
+                @addImage="addImage(movie)"
+                @chooseFile="chooseFile(movie)"
             />
           </div>
-          <div class="add-button__wrapper">
+          <div class="add-button__wrapper" v-if="isEditPage">
             <img class="add-button__button" :src="iconAddNew" alt="" @click="createNewItem">
           </div>
         </div>
@@ -76,6 +86,7 @@ export default {
       findedMovie: [],
       filterText: '',
       isSearched: false,
+      isEditPage: false,
       movieList: [
           {
             id: 1,
@@ -244,4 +255,53 @@ export default {
     padding: 12px
     border-radius: 10px
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.10)
+.switch
+  position: relative
+  display: inline-block
+  width: 60px
+  height: 34px
+.switch input
+  opacity: 0
+  width: 0
+  height: 0
+.slider
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: #ccc
+  -webkit-transition: .4s
+  transition: .4s
+  &:before
+    position: absolute
+    content: ""
+    height: 26px
+    width: 26px
+    left: 4px
+    bottom: 4px
+    background-color: white
+    -webkit-transition: .4s
+    transition: .4s
+input:checked + .slider
+  background-color: #2196F3
+input:focus + .slider
+  box-shadow: 0 0 1px #2196F3
+input:checked + .slider:before
+  -ms-transform: translateX(26px)
+  transform: translateX(26px)
+.slider.round
+  border-radius: 34px
+  &:before
+    border-radius: 50%
+.view-type
+  &__wrapper
+    display: flex
+    justify-content: flex-end
+  &__text
+    justify-content: flex-end
+    margin: auto 0
+    font-weight: 600
+    padding-right: 20px
 </style>
