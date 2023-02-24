@@ -7,14 +7,14 @@
           <img v-else class="cursor-pointer edit" :src="iconEdit" alt="" @click="$emit('editMovie')">
           <img class="cursor-pointer delete" :src="iconDelete" alt="" @click="$emit('deleteMovie')">
         </div>
-        <img :src="iconProfile" :alt="iconProfile">
+        <img :src="iconMovie" :alt="iconMovie">
       </div>
       <div v-if="movie.isEdit">
-        <div>
-          <input v-model="movie.title">
+        <div style="padding: 8px">
+          <input class="textarea__width" v-model="movie.title">
         </div>
         <div>
-          <input v-model="movie.description">
+          <textarea class="textarea__width" v-model="movie.description"></textarea>
         </div>
       </div>
       <div v-else>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import iconProfile from '@/assets/icon-profile.svg'
+import iconMovie from '@/assets/icon-movie.svg'
 import iconDelete from '@/assets/icon-delete.svg'
 import iconEdit from '@/assets/icon-edit.svg'
 import iconSave from '@/assets/icon-save.svg'
@@ -39,7 +39,7 @@ export default {
   name: "ProfileItem",
   data () {
     return {
-      iconProfile,
+      iconMovie,
       iconDelete,
       iconEdit,
       iconSave,
@@ -67,6 +67,7 @@ export default {
   background: #cbf3ff
   padding: 12px
   width: 33vh
+  height: 30vh
   border-radius: 10px
 .relative
   position: relative
@@ -80,4 +81,9 @@ export default {
 .cursor-pointer
   margin: 5px
   cursor: pointer
+.textarea__width
+  width: 100%
+  border: none
+  border-radius: 4px
+  overflow-y: hidden
 </style>

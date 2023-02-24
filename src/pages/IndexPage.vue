@@ -30,8 +30,8 @@
         </div>
       </div>
     </div>
-    <div class="cards__wrapper">
-      <div class="card__search">
+    <div class="cards__wrapper margin-top__30">
+      <div class="card__search margin-bottom__30">
         <div>
           Введите название фильма:
           <input class="m-right_10 input__borders" type="text" v-model="filterText" placeholder="Пример: Plane">
@@ -142,7 +142,7 @@ export default {
       movie.isEdit = false;
     },
     deleteMovie (movie) {
-      console.log(movie)
+      this.movieList.splice(movie.id, 1)
     },
     createNewItem () {
 
@@ -198,4 +198,11 @@ export default {
     justify-content: space-around
   &__button
     cursor: pointer
+.margin
+  &-bottom
+    &__30
+      margin-bottom: 30px
+  &-top
+    &__30
+      margin-top: 30px
 </style>
