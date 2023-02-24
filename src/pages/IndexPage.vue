@@ -14,12 +14,18 @@
       <div class="padding_8">
         <div class="padding_10 cards-list__wrapper">
           <div>
-            <img :src="iconAddNew" alt="">
+            <img :src="iconAddNew" alt="" @click="createNewItem">
           </div>
-          <div class="cards-list__inners">
-            <profile-item/>
-            <profile-item/>
-            <profile-item/>
+          <div
+              v-for="movie in movieList"
+              :key="movie.id"
+              class="cards-list__inners">
+            <profile-item
+              :parent-movie="movie"
+              @saveMovie="saveMovie(movie)"
+              @editMovie="editMovie(movie)"
+              @deleteMovie="deleteMovie(movie)"
+            />
           </div>
         </div>
       </div>
@@ -60,15 +66,39 @@ export default {
   components: {ProfileItem, CardItem },
   data () {
     return {
+      iconAddNew,
       items: [],
       filterText: '',
       isSearched: false,
       findedMovie: [],
-      iconAddNew
+      movieList: [
+          {
+            id: 1,
+          title: 'Бесславные ублюдки',
+          description: 'Вторая мировая война. ' +
+              'В оккупированной немцами Франции группа американских солдат-евреев наводит страх на нацистов,' +
+              ' жестоко убивая и скальпируя солдат. ',
+            isEdit: false
+        },
+        {
+          id: 2,
+          title: 'Убить Билла',
+          description: 'В беременную наемную убийцу по кличке Черная Мамба во время бракосочетания стреляет человек по имени Билл.' +
+              ' Пуля в голове жертвы, кровь на подвенечном платье, темнота. ',
+          isEdit: false
+        },
+        {
+          id: 3,
+          title: 'Криминальное чтиво',
+          description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
+              'разборками и решением проблем с должниками криминального босса Марселласа Уоллеса. ',
+          isEdit: false
+        },
+      ]
     }
   },
   methods: {
-    searchMovie: function () {
+    searchMovie () {
       const finded = []
       this.items.forEach(item => {
         if (item.title.toLowerCase().indexOf(this.filterText) !== -1) {
@@ -80,9 +110,21 @@ export default {
         this.findedMovie = finded
       }
     },
-    cleanSearch: function () {
+    cleanSearch () {
       this.filterText = ''
       this.searchMovie()
+    },
+    editMovie (movie) {
+      movie.isEdit = true;
+    },
+    saveMovie (movie) {
+      movie.isEdit = false;
+    },
+    deleteMovie (movie) {
+      console.log(movie)
+    },
+    createNewItem () {
+
     }
   },
   async mounted () {
