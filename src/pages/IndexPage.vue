@@ -13,9 +13,6 @@
     <div>
       <div class="padding_8">
         <div class="padding_10 cards-list__wrapper">
-          <div>
-            <img :src="iconAddNew" alt="" @click="createNewItem">
-          </div>
           <div
               v-for="movie in movieList"
               :key="movie.id"
@@ -26,6 +23,9 @@
               @editMovie="editMovie(movie)"
               @deleteMovie="deleteMovie(movie)"
             />
+          </div>
+          <div class="add-button__wrapper">
+            <img class="add-button__button" :src="iconAddNew" alt="" @click="createNewItem">
           </div>
         </div>
       </div>
@@ -94,6 +94,27 @@ export default {
               'разборками и решением проблем с должниками криминального босса Марселласа Уоллеса. ',
           isEdit: false
         },
+        {
+          id: 4,
+          title: 'Криминальное чтиво',
+          description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
+              'разборками и решением проблем с должниками криминального босса Марселласа Уоллеса. ',
+          isEdit: false
+        },
+        {
+          id: 5,
+          title: 'Криминальное чтиво',
+          description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
+              'разборками и решением проблем с должниками криминального босса Марселласа Уоллеса. ',
+          isEdit: false
+        },
+        {
+          id: 6,
+          title: 'Криминальное чтиво',
+          description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
+              'разборками и решением проблем с должниками криминального босса Марселласа Уоллеса. ',
+          isEdit: false
+        },
       ]
     }
   },
@@ -157,17 +178,24 @@ export default {
   &_10
     margin-right: 10px
 .cards-list
-  &__inners
-    display: flex
-    flex-wrap: wrap
-    flex-direction: row
   &__wrapper
     background: rgba(255, 255, 255, 0.61)
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.10)
     border-radius: 10px
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
 .padding
   &_8
     padding: 8px
   &_10
     padding: 10px
+.add-button
+  &__wrapper
+    display: flex
+    flex-wrap: wrap
+    width: 33vh
+    justify-content: space-around
+  &__button
+    cursor: pointer
 </style>

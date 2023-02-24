@@ -61,12 +61,12 @@ export default {
 
 <style scoped lang="sass">
 .wrapper
-  width: fit-content
   padding: 4px
   text-align: center
 .inner
   background: #cbf3ff
-  padding: 8px
+  padding: 12px
+  width: 33vh
   border-radius: 10px
 .relative
   position: relative
@@ -76,6 +76,7 @@ export default {
   top: 0
 .semi-bold
   font-weight: 600
+  font-size: 18px
 .cursor-pointer
   margin: 5px
   cursor: pointer
