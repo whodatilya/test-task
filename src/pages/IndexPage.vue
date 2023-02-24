@@ -3,10 +3,13 @@
     <div class="padding_8 card-items__wrapper margin-bottom__30">
       <div class="card-items__inner">
         <div>
-          123
+          <input>
         </div>
         <div>
-          123
+          <input>
+        </div>
+        <div>
+          <button>Сохранить</button>
         </div>
       </div>
     </div>
@@ -22,6 +25,8 @@
               @saveMovie="saveMovie(movie)"
               @editMovie="editMovie(movie)"
               @deleteMovie="deleteMovie(movie)"
+              @addImage="addImage(movie)"
+              @chooseFile="chooseFile(movie)"
             />
           </div>
           <div class="add-button__wrapper">
@@ -43,7 +48,7 @@
           </button>
         </div>
       </div>
-      <div class="card__wrapper">
+      <div class="card__wrapper" v-if="items">
         <div
             v-for="movie in !isSearched ? items : findedMovie"
             :key="movie.title"
@@ -77,42 +82,48 @@ export default {
           title: 'Бесславные ублюдки',
           description: 'Вторая мировая война. ' +
               'В оккупированной немцами Франции группа американских солдат-евреев наводит страх на нацистов.',
-            isEdit: false
+            isEdit: false,
+            image: ''
         },
         {
           id: 2,
           title: 'Убить Билла',
           description: 'В беременную наемную убийцу по кличке Черная Мамба во время бракосочетания стреляет человек по имени Билл.' +
               ' Пуля в голове жертвы, кровь на подвенечном платье, темнота. ',
-          isEdit: false
+          isEdit: false,
+          image: ''
         },
         {
           id: 3,
           title: 'Криминальное чтиво',
           description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
               'разборками.',
-          isEdit: false
+          isEdit: false,
+          image: ''
         },
         {
           id: 4,
           title: 'Криминальное чтиво',
           description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
               'разборками.',
-          isEdit: false
+          isEdit: false,
+          image: ''
         },
         {
           id: 5,
           title: 'Криминальное чтиво',
           description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
               'разборками.',
-          isEdit: false
+          isEdit: false,
+          image: ''
         },
         {
           id: 6,
           title: 'Криминальное чтиво',
           description: 'Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между ' +
               'разборками.',
-          isEdit: false
+          isEdit: false,
+          image: ''
         },
       ]
     }
@@ -145,6 +156,23 @@ export default {
     },
     createNewItem () {
 
+    },
+    chooseFile (movie) {
+      const fileInput = document.getElementById('uploadFile_' + movie.id)
+      fileInput.click()
+    },
+    addImage (movie) {
+      const fileInput = document.getElementById('uploadFile_' + movie.id)
+      let imgFile = fileInput.files
+
+      if (imgFile && imgFile[0]) {
+        let reader = new FileReader
+        reader.onload = e => {
+          movie.image = e.target.result
+        }
+        reader.readAsDataURL(imgFile[0])
+        this.$emit('fileInput', imgFile[0])
+      }
     }
   },
   async mounted () {
@@ -182,6 +210,7 @@ export default {
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.10)
     border-radius: 10px
     display: flex
+    justify-content: space-around
     flex-direction: row
     flex-wrap: wrap
 .padding
