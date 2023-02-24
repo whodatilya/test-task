@@ -1,7 +1,7 @@
 <template>
   <div class="padding_8">
-    <div class="first-section__wrapper" style="height: 30vh">
-      <div>
+    <div class="padding_8 card-items__wrapper margin-bottom__30">
+      <div class="card-items__inner">
         <div>
           123
         </div>
@@ -17,7 +17,7 @@
               v-for="movie in movieList"
               :key="movie.id"
               class="cards-list__inners">
-            <profile-item
+            <movie-item
               :parent-movie="movie"
               @saveMovie="saveMovie(movie)"
               @editMovie="editMovie(movie)"
@@ -58,19 +58,19 @@
 <script>
 import { nextTick } from 'vue';
 import CardItem from '@/components/CardItem';
-import ProfileItem from "@/components/ProfileItem";
+import MovieItem from "@/components/MovieItem";
 import iconAddNew from '@/assets/icon-create.svg'
 
 export default {
   name: 'IndexPage',
-  components: {ProfileItem, CardItem },
+  components: { MovieItem, CardItem },
   data () {
     return {
       iconAddNew,
       items: [],
+      findedMovie: [],
       filterText: '',
       isSearched: false,
-      findedMovie: [],
       movieList: [
           {
             id: 1,
@@ -205,4 +205,15 @@ export default {
   &-top
     &__30
       margin-top: 30px
+.card-items
+  &__wrapper
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+  &__inner
+    background: rgba(255, 255, 255, 0.61)
+    width: 100%
+    padding: 12px
+    border-radius: 10px
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.10)
 </style>

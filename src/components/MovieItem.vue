@@ -36,7 +36,7 @@ import iconEdit from '@/assets/icon-edit.svg'
 import iconSave from '@/assets/icon-save.svg'
 
 export default {
-  name: "ProfileItem",
+  name: "MovieItem",
   data () {
     return {
       iconMovie,
