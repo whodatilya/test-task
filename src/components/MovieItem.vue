@@ -66,8 +66,9 @@ export default {
 .inner
   background: #cbf3ff
   padding: 12px
-  width: 33vh
-  height: 30vh
+  max-width: 40vh
+  width: fit-content
+  height: fit-content
   border-radius: 10px
 .relative
   position: relative
