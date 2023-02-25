@@ -10,15 +10,26 @@
       </label>
     </div>
     <div class="padding_8 card-items__wrapper margin-bottom__30">
-      <div class="card-items__inner">
+      <div v-if="isEditPage && !header.isEdit" class="card-items__inner">
         <div>
-          <input>
+          <input class="input__borders input-padding center-text" type="text" v-model="header.title">
         </div>
         <div>
-          <input>
+          <input class="input__borders input-padding center-text" type="text" v-model="header.description">
         </div>
         <div>
-          <button>Сохранить</button>
+          <button @click="headerToggle">Сохранить</button>
+        </div>
+      </div>
+      <div v-else-if="header.title && header.description && header.isEdit" class="card-items__inner" style="position: relative">
+        <div class="icon-position">
+          <img @click="headerToggle" :src="iconEdit" alt="">
+        </div>
+        <div class="header-font" style="font-weight: 600">
+          {{ header.title }}
+        </div>
+        <div class="header-font" style="font-weight: 400">
+          {{ header.description }}
         </div>
       </div>
     </div>
@@ -89,6 +100,7 @@ import { nextTick } from 'vue';
 import CardItem from '@/components/CardItem';
 import MovieItem from "@/components/MovieItem";
 import iconAddNew from '@/assets/icon-create.svg'
+import iconEdit from '@/assets/icon-edit.svg'
 
 export default {
   name: 'IndexPage',
@@ -96,15 +108,22 @@ export default {
   data () {
     return {
       iconAddNew,
+      iconEdit,
       items: [],
       findedMovie: [],
       filterText: '',
       isSearched: false,
       isEditPage: false,
+      isCreateHeader: false,
       isCreateNew: false,
       newItem: {
         title: '',
         description: ''
+      },
+      header: {
+        title: '',
+        description: '',
+        isEdit: false
       },
       movieList: [
           {
@@ -197,9 +216,10 @@ export default {
         description: this.newItem.description,
         image: ''
       })
-      this.newItem.title = ''
-      this.newItem.description = ''
       this.createToggle()
+    },
+    headerToggle () {
+      this.header.isEdit = !this.header.isEdit
     },
     chooseFile (movie) {
       const fileInput = document.getElementById('uploadFile_' + movie.id)
@@ -288,6 +308,7 @@ export default {
     padding: 12px
     border-radius: 10px
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.10)
+    text-align: center
 .switch
   position: relative
   display: inline-block
@@ -347,4 +368,13 @@ input:checked + .slider:before
   border-radius: 10px
 .input-padding
   margin: 5px
+.center-text
+  text-align: center
+.header-font
+  font-family: 'Comic Sans MS',serif
+.icon-position
+  position: absolute
+  top: 0
+  right: 0
+  padding: 10px
 </style>
