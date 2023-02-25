@@ -42,8 +42,8 @@
           <div class="add-button__wrapper" v-if="isEditPage">
             <img v-if="!isCreateNew" class="add-button__button" :src="iconAddNew" alt="" @click="createToggle">
             <div v-else class="edit">
-              <input type="text" v-model="newItem.title">
-              <input type="text" v-model="newItem.description">
+              <input type="text" class="input-padding" v-model="newItem.title">
+              <input type="text" class="input-padding" v-model="newItem.description">
               <div>
                 <button @click="createNewItem">
                   Сохранить
@@ -182,9 +182,10 @@ export default {
     createToggle () {
       this.isCreateNew = !this.isCreateNew
     },
+    // Приходится так выкручиваться, потому что массив movieList - хардкодный
     createNewItem () {
       this.movieList.push({
-        id: this.movieList.slice(-1)[0] + 1,
+        id: this.movieList.slice(-1)[0].id + 1,
         title: this.newItem.title,
         description: this.newItem.description,
         image: ''
@@ -330,10 +331,13 @@ input:checked + .slider:before
     font-weight: 600
     padding-right: 20px
 .edit
+  text-align: center
   background: #cbf3ff
   padding: 12px
   max-width: 40vh
   width: fit-content
   height: fit-content
   border-radius: 10px
+.input-padding
+  margin: 5px
 </style>
