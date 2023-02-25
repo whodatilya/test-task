@@ -40,7 +40,16 @@
             />
           </div>
           <div class="add-button__wrapper" v-if="isEditPage">
-            <img class="add-button__button" :src="iconAddNew" alt="" @click="createNewItem">
+            <img v-if="!isCreateNew" class="add-button__button" :src="iconAddNew" alt="" @click="createToggle">
+            <div v-else class="edit">
+              <input type="text" v-model="newItem.title">
+              <input type="text" v-model="newItem.description">
+              <div>
+                <button @click="createNewItem">
+                  Сохранить
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -87,6 +96,11 @@ export default {
       filterText: '',
       isSearched: false,
       isEditPage: false,
+      isCreateNew: false,
+      newItem: {
+        title: '',
+        description: ''
+      },
       movieList: [
           {
             id: 1,
@@ -165,8 +179,19 @@ export default {
     deleteMovie (movie) {
       this.movieList.splice(movie.id, 1)
     },
+    createToggle () {
+      this.isCreateNew = !this.isCreateNew
+    },
     createNewItem () {
-
+      this.movieList.push({
+        id: this.movieList.slice(-1)[0] + 1,
+        title: this.newItem.title,
+        description: this.newItem.description,
+        image: ''
+      })
+      this.newItem.title = ''
+      this.newItem.description = ''
+      this.createToggle()
     },
     chooseFile (movie) {
       const fileInput = document.getElementById('uploadFile_' + movie.id)
@@ -304,4 +329,11 @@ input:checked + .slider:before
     margin: auto 0
     font-weight: 600
     padding-right: 20px
+.edit
+  background: #cbf3ff
+  padding: 12px
+  max-width: 40vh
+  width: fit-content
+  height: fit-content
+  border-radius: 10px
 </style>
