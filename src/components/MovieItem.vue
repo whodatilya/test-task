@@ -70,6 +70,7 @@ export default {
   background: #cbf3ff
   padding: 12px
   max-width: 40vh
+  min-width: 20vh
   width: fit-content
   height: fit-content
   border-radius: 10px

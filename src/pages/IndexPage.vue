@@ -49,6 +49,11 @@
                   Сохранить
                 </button>
               </div>
+              <div>
+                <button @click="createToggle">
+                  Отменить
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -180,6 +185,8 @@ export default {
       this.movieList.splice(movie.id, 1)
     },
     createToggle () {
+      this.newItem.title = ''
+      this.newItem.description = ''
       this.isCreateNew = !this.isCreateNew
     },
     // Приходится так выкручиваться, потому что массив movieList - хардкодный
