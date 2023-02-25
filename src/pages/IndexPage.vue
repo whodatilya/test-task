@@ -23,7 +23,7 @@
       </div>
       <div v-else-if="header.title && header.description && header.isEdit" class="card-items__inner" style="position: relative">
         <div class="icon-position">
-          <img @click="headerToggle" :src="iconEdit" alt="">
+          <img v-if="isEditPage" @click="headerToggle" :src="iconEdit" alt="">
         </div>
         <div class="header-font" style="font-weight: 600">
           {{ header.title }}
