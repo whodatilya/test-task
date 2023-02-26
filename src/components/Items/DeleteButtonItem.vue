@@ -22,6 +22,12 @@ export default {
   },
   methods: {
     deleteBlock (id) {
+      const blocks = this.$parent.$options.parent.$parent.blocks
+      blocks.forEach((item, index) => {
+        if (item.id === id) {
+          blocks.splice(index, 1)
+        }
+      })
       let element = document.getElementById(id)
       element.remove()
     }
