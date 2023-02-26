@@ -10,7 +10,7 @@
       </label>
     </div>
     <sidebar-item :is-page-edit="isEditPage"/>
-    <div style="height: 100vh">
+    <div>
       <draggable
           v-model="blocks"
           group="blocks"
@@ -24,6 +24,7 @@
         />
       </draggable>
     </div>
+    <div style="height: 100vh"/>
   </div>
 </template>
 <script>
