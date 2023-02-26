@@ -24,7 +24,7 @@
         <div class="semi-bold">
           {{ movie.title }}
         </div>
-        <div>
+        <div class="small">
           {{ movie.description }}
         </div>
       </div>
@@ -82,7 +82,10 @@ export default {
   top: 0
 .semi-bold
   font-weight: 600
+  font-family: "Comic Sans MS", serif
   font-size: 18px
+.small
+  font-family: "Comic Sans MS", serif
 .cursor-pointer
   margin: 5px
   cursor: pointer

@@ -64,7 +64,7 @@ export default {
     justify-content: space-between
     align-items: center
   &__text
-    font-family: Graphik Kinopoisk LC Web,Tahoma,Arial,Verdana,sans-serif
+    font-family: "Comic Sans MS", serif
     font-size: 13px
     line-height: 18px
     font-weight: 600
