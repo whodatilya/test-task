@@ -7,7 +7,7 @@
           <img v-else class="cursor-pointer edit" :src="iconEdit" alt="" @click="$emit('editMovie')">
           <img class="cursor-pointer delete" :src="iconDelete" alt="" @click="$emit('deleteMovie')">
         </div>
-        <div @click="$emit('chooseFile')">
+        <div @click="isPageEdit ? $emit('chooseFile') : null">
           <input type="file" style="display: none" :id="'uploadFile_' + movie.id" @change="$emit('addImage')">
           <img style="max-width: 100%" :src="movie.image !== '' ? movie.image : iconMovie" alt="">
         </div>
