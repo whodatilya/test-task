@@ -9,7 +9,7 @@
         <span class="slider round"></span>
       </label>
     </div>
-    <sidebar-item/>
+    <sidebar-item :is-page-edit="isEditPage"/>
     <div>
       <draggable
           v-model="blocks"

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="isPageEdit">
     <draggable
         :list="listAvailableBlocks"
         :group="{ name: 'blocks', pull: 'clone', put: false }"
@@ -40,8 +40,11 @@ export default {
       ]
     }
   },
-  methods: {
-
+  props: {
+    isPageEdit: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
