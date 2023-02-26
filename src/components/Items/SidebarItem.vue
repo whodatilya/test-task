@@ -4,14 +4,17 @@
         class="sidebar__inner"
         :list="listAvailableBlocks"
         :group="{ name: 'blocks', pull: 'clone', put: false }"
+        @start="addId"
     >
       <div
           v-for="block in listAvailableBlocks"
           :key="block.type"
           class="sidebar__text"
       >
-        {{ block.name }}
-        <div v-if="block.id !== listAvailableBlocks.length - 1">
+        <div :key="block.name" style="cursor: pointer">
+          {{ block.name }}
+        </div>
+        <div v-if="block.type !== 'movie'">
           <hr>
         </div>
       </div>
@@ -28,17 +31,17 @@ export default {
     return {
       listAvailableBlocks: [
         {
-          id: 0,
+          id: null,
           type: 'text',
           name: 'Заголовок'
         },
         {
-          id: 1,
+          id: null,
           type: 'card',
           name: 'Фильмы'
         },
         {
-          id: 2,
+          id: null,
           type: 'movie',
           name: 'Карточки'
         }
@@ -49,6 +52,19 @@ export default {
     isPageEdit: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    lastIndex () {
+      return this.listAvailableBlocks
+    }
+  },
+  methods: {
+    addId () {
+      this.listAvailableBlocks = this.listAvailableBlocks.map(e => {
+        e.id = Math.random().toString(36).substring(7)
+        return Object.assign({}, e)
+      })
     }
   }
 }

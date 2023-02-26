@@ -12,6 +12,9 @@
       </div>
     </div>
     <div v-else class="card-items__inner" style="position: relative; width: unset">
+      <div>
+        <delete-button-item style="position: absolute; right: 5px; top: 35px" :id="getId"/>
+      </div>
       <div class="icon-position">
         <img v-if="isPageEdit" @click="headerToggle" :src="iconEdit" alt="">
       </div>
@@ -26,9 +29,11 @@
 </template>
 
 <script>
+import deleteButtonItem from '@/components/Items/DeleteButtonItem';
 import iconEdit from '@/assets/icon-edit.svg'
 export default {
   name: "TextBlock",
+  components: { deleteButtonItem },
   props: {
     isPageEdit: {
       type: Boolean,
@@ -45,6 +50,11 @@ export default {
         defaultDescription: 'Описание',
         isEdit: false
       }
+    }
+  },
+  computed: {
+    getId () {
+      return String(this.$attrs.id)
     }
   },
   methods: {

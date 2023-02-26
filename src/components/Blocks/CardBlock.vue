@@ -1,5 +1,8 @@
 <template>
-  <div class="cards__wrapper margin-top__30">
+  <div class="cards__wrapper margin-top__30" style="position: relative">
+    <div>
+      <delete-button-item style="position: absolute; right: 5px; top: 0" :id="getId"/>
+    </div>
     <div class="card__search margin-bottom__30">
       <div>
         Введите название фильма:
@@ -25,11 +28,12 @@
 </template>
 
 <script>
+import deleteButtonItem from '@/components/Items/DeleteButtonItem';
 import cardItem from '@/components/Items/CardItem';
 import {nextTick} from "vue";
 export default {
   name: "CardBlock",
-  components: { cardItem },
+  components: { cardItem, deleteButtonItem },
   props: {
     isPageEdit: {
       type: Boolean,
@@ -42,6 +46,11 @@ export default {
       items: [],
       isSearched: false,
       findedMovie: []
+    }
+  },
+  computed: {
+    getId () {
+      return String(this.$attrs.id)
     }
   },
   methods: {

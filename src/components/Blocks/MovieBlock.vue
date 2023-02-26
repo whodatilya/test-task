@@ -1,5 +1,8 @@
 <template>
   <div class="padding_8">
+    <div>
+      <delete-button-item style="position: absolute; right: 25px" :id="getId"/>
+    </div>
     <div class="padding_10 cards-list__wrapper" v-if="movieList">
       <div
           v-for="movie in movieList"
@@ -39,9 +42,10 @@
 <script>
 import iconAddNew from '@/assets/icon-create.svg'
 import movieItem from '@/components/Items/MovieItem';
+import deleteButtonItem from '@/components/Items/DeleteButtonItem';
 export default {
   name: "MovieBlock",
-  components: { movieItem },
+  components: { movieItem, deleteButtonItem },
   props: {
     isPageEdit: {
       type: Boolean,
@@ -106,6 +110,11 @@ export default {
           image: ''
         },
       ]
+    }
+  },
+  computed: {
+    getId () {
+      return String(this.$attrs.id)
     }
   },
   methods: {
