@@ -11,7 +11,7 @@
           :key="block.type"
           class="sidebar__text"
       >
-        <div :key="block.name" style="cursor: pointer">
+        <div :key="block.type" style="cursor: pointer">
           {{ block.name }}
         </div>
         <div v-if="block.type !== 'movie'">

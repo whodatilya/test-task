@@ -10,21 +10,19 @@
       </label>
     </div>
     <sidebar-item :is-page-edit="isEditPage"/>
-    <div>
-      <draggable
-          v-model="blocks"
-          group="blocks"
-      >
-        <component
-            v-for="block in blocks"
-            :key="block.id"
-            :is="block.type + 'Block'"
-            :id="block.id"
-            :is-page-edit="isEditPage"
-        />
-      </draggable>
-    </div>
-    <div style="height: 100vh"/>
+    <draggable
+        v-model="blocks"
+        group="blocks"
+    >
+      <component
+          v-for="block in blocks"
+          :key="block.id"
+          :is="block.type + 'Block'"
+          :id="block.id"
+          :is-page-edit="isEditPage"
+      />
+    </draggable>
+    <div style="height: 100%"/>
   </div>
 </template>
 <script>
