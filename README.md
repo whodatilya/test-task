@@ -1,24 +1,14 @@
-# test
+# Тестовое задание
 
-## Project setup
+**Установка зависимостей**
 ```
 yarn install
 ```
-
-### Compiles and hot-reloads for development
+**Для исправной работы секции с фильмами рекомендуется использовать VPN**
 ```
-yarn serve
+Пример: iTopVPN
 ```
-
-### Compiles and minifies for production
+**Разворачиваем проект локально**
 ```
-yarn build
+yarn run serve
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
