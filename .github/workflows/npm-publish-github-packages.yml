@@ -13,10 +13,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: 'Проведена проверка кода...'
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: 17
+
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: 'Произведена установка Node.js'
 
       - name: Cache Yarn packages
         uses: actions/cache@v2
@@ -27,6 +41,13 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: 'Установка зависимостей...'
 
       - name: Build project
         run: yarn build
@@ -52,4 +73,11 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: 'The build and deployment process is complete.'
+          message: 'Образ успешно загружен на DockerHub. См: пользователь whodatilya'
+
+      - name: Send Telegram notification
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: 'Приложение было собрано и задеплоено. См: https://constructor-seven.vercel.app/'
